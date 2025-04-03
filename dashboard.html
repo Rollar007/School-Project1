@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Marketplace | Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="dashboard.html">ArtisanHub</a>
+        </div>
+        <nav>
+            <ul class="tabs">
+                <li><a href="#" class="tab active" data-tab="home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" class="tab" data-tab="browse"><i class="fas fa-search"></i> Browse</a></li>
+                <li><a href="#" class="tab" data-tab="appointments"><i class="fas fa-calendar-alt"></i> Appointments</a></li>
+                <li><a href="#" class="tab" data-tab="profiles"><i class="fas fa-user"></i> Profile</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="welcome-banner">
+            <h1>Welcome to ArtisanHub</h1>
+            <p>Find skilled professionals for your projects or showcase your services</p>
+        </div>
+
+        <div class="dashboard-content">
+            <!-- Home Tab Content -->
+            <div class="tab-content active" id="home-content">
+                <section class="action-cards">
+                    <div class="card">
+                        <i class="fas fa-search"></i>
+                        <h3>Find Artisans</h3>
+                        <p>Browse skilled professionals in your area</p>
+                        <a href="#" class="card-btn browse-btn">Browse Now</a>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fas fa-tools"></i>
+                        <h3>Your Profile</h3>
+                        <p>Manage your artisan profile and services</p>
+                        <a href="#" class="card-btn profile-btn">Manage Profile</a>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Appointments</h3>
+                        <p>View and manage your bookings</p>
+                        <a href="#" class="card-btn appointments-btn">View Appointments</a>
+                    </div>
+                </section>
+
+                <section class="recent-activity">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p>Welcome to ArtisanHub! Complete your profile to get started.</p>
+                                <span class="activity-time">Just now</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Browse Tab Content -->
+            <div class="tab-content" id="browse-content">
+                <section class="browse-section">
+                    <h2>Browse Artisans</h2>
+                    <div class="search-filters">
+                        <div class="filter-group">
+                            <input type="text" id="searchInput" placeholder="Search by name...">
+                        </div>
+                        <div class="filter-group">
+                            <select id="regionFilter">
+                                <option value="">All Regions</option>
+                                <option value="Greater Accra">Greater Accra</option>
+                                <option value="Ashanti">Ashanti</option>
+                                <option value="Western">Western</option>
+                                <option value="Central">Central</option>
+                                <option value="Eastern">Eastern</option>
+                                <option value="Volta">Volta</option>
+                                <option value="Northern">Northern</option>
+                                <option value="Upper East">Upper East</option>
+                                <option value="Upper West">Upper West</option>
+                                <option value="Bono">Bono</option>
+                                <option value="Ahafo">Ahafo</option>
+                                <option value="Bono East">Bono East</option>
+                                <option value="Oti">Oti</option>
+                                <option value="Western North">Western North</option>
+                                <option value="Savannah">Savannah</option>
+                                <option value="North East">North East</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <select id="skillFilter">
+                                <option value="">All Skills</option>
+                                <option value="carpentry">Carpentry</option>
+                                <option value="plumbing">Plumbing</option>
+                                <option value="masonry">Masonry</option>
+                                <option value="electrical">Electrical</option>
+                                <option value="painting">Painting</option>
+                            </select>
+                        </div>
+                        <button id="searchBtn" class="search-btn">Search</button>
+                    </div>
+                    <div class="artisans-grid">
+                        <p class="empty-state">Use the search filters to find artisans</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Appointments Tab Content -->
+            <div class="tab-content" id="appointments-content">
+                <section class="appointments-section">
+                    <h2>Your Appointments</h2>
+                    <div class="appointment-tabs">
+                        <button class="appointment-tab active" data-status="upcoming">Upcoming</button>
+                        <button class="appointment-tab" data-status="completed">Completed</button>
+                        <button class="appointment-tab" data-status="cancelled">Cancelled</button>
+                    </div>
+                    <div class="appointments-list">
+                        <p class="empty-state">You don't have any appointments yet</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Profile Tab Content -->
+            <div class="tab-content" id="profiles-content">
+                <section class="profile-section">
+                    <h2>Your Profile</h2>
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div id="profile-avatar" class="avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="profile-info">
+                                <h3 id="profile-name">Loading...</h3>
+                                <p id="profile-type">Loading...</p>
+                            </div>
+                        </div>
+                        <div class="profile-details">
+                            <div class="detail-item">
+                                <span><i class="fas fa-envelope"></i> Email:</span>
+                                <span id="profile-email">Loading...</span>
+                            </div>
+                            <div class="detail-item">
+                                <span><i class="fas fa-phone"></i> Phone:</span>
+                                <span id="profile-phone">Loading...</span>
+                            </div>
+                            <div class="detail-item">
+                                <span><i class="fas fa-map-marker-alt"></i> Region:</span>
+                                <span id="profile-region">Loading...</span>
+                            </div>
+                            <div class="detail-item" id="profile-skills-container" style="display: none;">
+                                <span><i class="fas fa-tools"></i> Skills:</span>
+                                <span id="profile-skills">Loading...</span>
+                            </div>
+                        </div>
+                        <button class="card-btn edit-profile-btn">Edit Profile</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2023 ArtisanHub. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

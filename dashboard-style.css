@@ -1,0 +1,2144 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: #2da0a8;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+nav a:hover, nav a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.user-menu button {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-menu button:hover {
+    background-color: white;
+    color: #2da0a8;
+}
+
+/* Main Content Styles */
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.welcome-banner {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.welcome-banner h1 {
+    color: #2da0a8;
+    margin-bottom: 1rem;
+}
+
+.welcome-banner p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Tab Navigation */
+.tabs {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+.tabs .tab {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.tabs .tab.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Action Cards */
+.action-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card i {
+    font-size: 2.5rem;
+    color: #2da0a8;
+    margin-bottom: 1.5rem;
+}
+
+.card h3 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.card-btn {
+    display: inline-block;
+    background-color: #2da0a8;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.card-btn:hover {
+    background-color: #1d7a80;
+}
+
+/* Recent Activity */
+.recent-activity h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.activity-list {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.activity-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f0f7f8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2da0a8;
+}
+
+.activity-content p {
+    margin-bottom: 0.3rem;
+    color: #333;
+}
+
+.activity-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Browse Section */
+.browse-section {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.search-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.search-filters input, 
+.search-filters select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    flex: 1;
+}
+
+.artisans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.empty-state {
+    text-align: center;
+    color: #666;
+    padding: 2rem;
+    grid-column: 1 / -1;
+}
+
+/* Appointments Section */
+.appointment-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.appointment-tab {
+    padding: 0.5rem 1rem;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.appointment-tab.active {
+    background: #2da0a8;
+    color: white;
+}
+
+/* Profile Section */
+.profile-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.avatar {
+    font-size: 3rem;
+    color: #2da0a8;
+}
+
+.profile-info h3 {
+    margin-bottom: 0.5rem;
+}
+
+.profile-details {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-item span:first-child {
+    font-weight: 600;
+    color: #333;
+}
+
+.detail-item span:last-child {
+    color: #666;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.edit-profile-form h3 {
+    margin-bottom: 1.5rem;
+    color: #2da0a8;
+}
+
+.edit-profile-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.edit-profile-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.edit-profile-form input,
+.edit-profile-form textarea,
+.edit-profile-form select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.edit-profile-form textarea {
+    min-height: 100px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.form-actions button {
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background-color: #f0f0f0;
+    border: none;
+}
+
+.save-btn {
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #2a3b4a;
+    color: white;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #2da0a8;
+}
+
+.footer-copyright {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    nav ul {
+        gap: 1rem;
+    }
+    
+    .action-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .search-filters {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Profile Photo Styles */
+.photo-preview-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.photo-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 3rem;
+    margin: 0 auto;
+}
+
+.photo-preview i {
+    color: #2da0a8;
+}
+
+#profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 2.5rem;
+    margin-right: 1.5rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* Add these styles to your existing dashboard-style.css */
+
+/* Browse Section Styles */
+.browse-section {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.search-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-filters input,
+.search-filters select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-btn {
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #1d7a80;
+}
+
+.artisans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.artisan-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.artisan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.artisan-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    overflow: hidden;
+}
+
+.artisan-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artisan-photo i {
+    font-size: 2.5rem;
+    color: #2da0a8;
+}
+
+.artisan-info {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.artisan-info h3 {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.artisan-skills {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.artisan-region {
+    color: #2da0a8;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.view-profile-btn {
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: auto;
+    transition: background-color 0.3s;
+}
+
+.view-profile-btn:hover {
+    background-color: #1d7a80;
+}
+
+/* Artisan Profile View Modal */
+.artisan-profile-view {
+    max-width: 600px;
+}
+
+.artisan-header {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.artisan-photo-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.artisan-photo-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artisan-photo-large i {
+    font-size: 3.5rem;
+    color: #2da0a8;
+}
+
+.artisan-main-info {
+    flex: 1;
+}
+
+.artisan-rating {
+    margin-top: 0.5rem;
+}
+
+.stars {
+    color: #ffc107;
+}
+
+.review-count {
+    color: #666;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
+
+.detail-section {
+    margin-bottom: 1.5rem;
+}
+
+.detail-section h3 {
+    color: #2da0a8;
+    margin-bottom: 0.5rem;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background-color: #f0f7f8;
+    color: #2da0a8;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.close-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book-btn {
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.empty-state {
+    text-align: center;
+    color: #666;
+    padding: 2rem;
+    grid-column: 1 / -1;
+}
+
+/* Add these to the existing dashboard-style.css */
+
+/* Appointments Styles */
+.appointment-item {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.appointment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.appointment-status {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.appointment-status.upcoming {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.appointment-status.completed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.appointment-status.cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.appointment-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.appointment-details p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
+}
+
+.appointment-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.cancel-appt-btn, .reschedule-appt-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.cancel-appt-btn {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: none;
+}
+
+.cancel-appt-btn:hover {
+    background-color: #f5c6cb;
+}
+
+.reschedule-appt-btn {
+    background-color: #fff3cd;
+    color: #856404;
+    border: none;
+}
+
+.reschedule-appt-btn:hover {
+    background-color: #ffeeba;
+}
+
+/* Rating Stars */
+.rating-stars {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.3rem;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star.active, .star:hover {
+    color: #ffc107;
+}
+
+.review-count {
+    font-size: 0.9rem;
+    color: #666;
+    margin-left: 0.5rem;
+}
+
+/* Booking Form */
+#bookingForm textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+/* Artisan Card Enhancements */
+.artisan-card {
+    position: relative;
+}
+
+.artisan-rating {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.book-artisan-btn {
+    width: 100%;
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.book-artisan-btn:hover {
+    background-color: #1d7a80;
+}
+
+/* Modal Enhancements */
+.modal-content.artisan-profile-view {
+    max-width: 700px;
+    width: 90%;
+}
+
+.artisan-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.artisan-photo-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.artisan-photo-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artisan-photo-large i {
+    font-size: 3.5rem;
+    color: #2da0a8;
+}
+
+.detail-section {
+    margin-bottom: 1.5rem;
+}
+
+.detail-section h3 {
+    color: #2da0a8;
+    margin-bottom: 0.5rem;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background-color: #f0f7f8;
+    color: #2da0a8;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+#reviewText {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+    margin-top: 0.5rem;
+}
+
+.submit-review-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-review-btn:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    .artisan-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .appointment-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .appointment-actions {
+        flex-direction: column;
+    }
+    
+    .cancel-appt-btn, .reschedule-appt-btn {
+        width: 100%;
+    }
+}
+/* Update the avatar and photo preview styles */
+#profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 2.5rem;
+    margin-right: 1.5rem;
+    overflow: hidden; /* Ensures the image stays within the circle */
+}
+
+#profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the space without distorting */
+}
+
+.photo-preview-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.photo-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 3rem;
+    margin: 0 auto;
+    overflow: hidden; /* Ensures the preview stays within the circle */
+}
+
+.photo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the space without distorting */
+}
+/* Add these to the existing dashboard-style.css */
+
+/* Artisan Profile Modal */
+.artisan-profile-view {
+    max-width: 600px;
+    width: 90%;
+}
+
+.artisan-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.artisan-photo-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.artisan-photo-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artisan-photo-large i {
+    font-size: 3.5rem;
+    color: #2da0a8;
+}
+
+.detail-section {
+    margin-bottom: 1.5rem;
+}
+
+.detail-section h3 {
+    color: #2da0a8;
+    margin-bottom: 0.5rem;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background-color: #f0f7f8;
+    color: #2da0a8;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.close-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book-btn {
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Rating Stars */
+.rating-stars {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.3rem;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star.active, .star:hover {
+    color: #ffc107;
+}
+
+.review-count {
+    font-size: 0.9rem;
+    color: #666;
+    margin-left: 0.5rem;
+}
+
+/* Booking Form */
+#bookingForm textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .artisan-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .close-btn, .book-btn {
+        width: 100%;
+    }
+    
+    .search-filters {
+        flex-direction: column;
+    }
+    
+    .artisans-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    #profile-avatar {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+}/* Artisan Card Styles */
+.artisan-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.artisan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.artisan-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    overflow: hidden;
+}
+
+.artisan-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artisan-photo i {
+    font-size: 2.5rem;
+    color: #2da0a8;
+}
+
+.artisan-info {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.artisan-info h3 {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.artisan-skills {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.artisan-region {
+    color: #2da0a8;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.view-profile-btn {
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: auto;
+    transition: background-color 0.3s;
+}
+
+.view-profile-btn:hover {
+    background-color: #1d7a80;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.artisan-profile-view {
+    max-width: 700px;
+}
+
+.artisan-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.artisan-photo-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.artisan-photo-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artisan-photo-large i {
+    font-size: 3.5rem;
+    color: #2da0a8;
+}
+
+.detail-section {
+    margin-bottom: 1.5rem;
+}
+
+.detail-section h3 {
+    color: #2da0a8;
+    margin-bottom: 0.5rem;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background-color: #f0f7f8;
+    color: #2da0a8;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.close-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book-btn {
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Rating Stars */
+.rating-stars {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.3rem;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star.active, .star:hover {
+    color: #ffc107;
+}
+
+.review-count {
+    font-size: 0.9rem;
+    color: #666;
+    margin-left: 0.5rem;
+}
+
+/* Booking Form */
+#bookingForm textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+/* Appointment Styles */
+.appointment-item {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.appointment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.appointment-status {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.appointment-status.upcoming {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.appointment-status.completed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.appointment-status.cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.appointment-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.appointment-details p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
+}
+
+.appointment-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.cancel-appt-btn, .reschedule-appt-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.cancel-appt-btn {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: none;
+}
+
+.cancel-appt-btn:hover {
+    background-color: #f5c6cb;
+}
+
+.reschedule-appt-btn {
+    background-color: #fff3cd;
+    color: #856404;
+    border: none;
+}
+
+.reschedule-appt-btn:hover {
+    background-color: #ffeeba;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .artisan-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .close-btn, .book-btn {
+        width: 100%;
+    }
+    
+    .search-filters {
+        flex-direction: column;
+    }
+    
+    .artisans-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .appointment-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .appointment-actions {
+        flex-direction: column;
+    }
+    
+    .cancel-appt-btn, .reschedule-appt-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    #profile-avatar {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+}
+/* Add to dashboard-style.css */
+
+.complete-appt-btn {
+    background-color: #d4edda;
+    color: #155724;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.complete-appt-btn:hover {
+    background-color: #c3e6cb;
+}
+
+/* Appointment details icons */
+.appointment-details i {
+    width: 20px;
+    text-align: center;
+    color: #2da0a8;
+}
+/* Add these styles to dashboard-style.css */
+
+/* Review Form Styles */
+.rating-stars-input {
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.rating-stars-input i {
+    font-size: 1.8rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.rating-stars-input i.active {
+    color: #ffc107;
+}
+
+/* Review Item Styles */
+.review-item {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.review-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.review-rating {
+    color: #ffc107;
+}
+
+.review-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.review-content {
+    color: #333;
+    line-height: 1.6;
+}
+
+.view-all-reviews-btn {
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.view-all-reviews-btn:hover {
+    background-color: #1d7a80;
+}
+
+.review-appt-btn {
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.review-appt-btn:hover {
+    background-color: #1d7a80;
+}
+
+/* Add these styles to your existing dashboard-style.css */
+
+/* Glassmorphism Card Styles */
+.glass-card {
+    position: relative;
+    width: 280px;
+    height: 380px;
+    margin: 1em;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    border: solid 2px transparent;
+    background-clip: padding-box;
+    box-shadow: 0px 10px 10px rgba(46, 54, 68, 0.03);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card .content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.5s;
+    padding: 20px;
+    text-align: center;
+}
+
+.glass-card .artisan-photo {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 8px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.glass-card .artisan-photo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.glass-card .artisan-info h3 {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.glass-card .artisan-info p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.glass-card .artisan-skills {
+    margin: 15px 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+}
+
+.glass-card .artisan-region {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2da0a8;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.glass-card .view-profile-btn {
+    background-color: rgba(45, 160, 168, 0.8);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+.glass-card .view-profile-btn:hover {
+    background-color: rgba(29, 122, 128, 0.9);
+}
+
+/* Background effects for the browse section */
+.browse-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#f00, #f0f);
+    clip-path: circle(20% at right 80%);
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.browse-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#2196f3, #e91e63);
+    clip-path: circle(15% at 10% 10%);
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* Update the artisans grid layout */
+.artisans-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+/* Modern Booking Form Styles */
+.booking-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.booking-content {
+    background: white;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.booking-header h3 {
+    color: #2da0a8;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.booking-header .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #777;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.booking-header .close-btn:hover {
+    color: #333;
+}
+
+.booking-form {
+    padding: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group.full-width {
+    flex: 0 0 100%;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2da0a8;
+    font-size: 1rem;
+}
+
+.input-with-icon input,
+.input-with-icon textarea {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    background-color: #f9f9f9;
+}
+
+.input-with-icon input:focus,
+.input-with-icon textarea:focus {
+    outline: none;
+    border-color: #2da0a8;
+    box-shadow: 0 0 0 3px rgba(45, 160, 168, 0.1);
+    background-color: white;
+}
+
+.input-with-icon textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+input[type="date"],
+input[type="time"] {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.cancel-btn {
+    padding: 12px 20px;
+    background: #f0f0f0;
+    color: #555;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.cancel-btn:hover {
+    background: #e0e0e0;
+}
+
+.save-btn {
+    padding: 12px 20px;
+    background: #2da0a8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.save-btn:hover {
+    background: #1d7a80;
+    transform: translateX(5px);
+}
+
+.save-btn i {
+    transition: transform 0.3s;
+}
+
+.save-btn:hover i {
+    transform: translateX(3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .booking-content {
+        width: 95%;
+        margin: 0 auto;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .form-group {
+        width: 100%;
+    }
+}
+/* Advanced Filters */
+.advanced-filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.filter-toggle-btn {
+    background: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+/* Verification Badge */
+.verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: #2da0a8;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Messaging System */
+.messaging-modal {
+    max-width: 800px;
+}
+
+.message-threads {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.message-composer textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+.send-btn {
+    background: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+/* Service Packages */
+.service-package {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.service-package input,
+.service-package textarea {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.remove-package-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Calendar Integration */
+.calendar-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+#bookingCalendar {
+    min-height: 300px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+#timeSlotsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.time-slot {
+    background: #f0f7f8;
+    border: 1px solid #2da0a8;
+    border-radius: 5px;
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.time-slot.selected {
+    background: #2da0a8;
+    color: white;
+}
+
+.time-slot.unavailable {
+    background: #f8d7da;
+    border-color: #e74c3c;
+    color: #721c24;
+    cursor: not-allowed;
+}

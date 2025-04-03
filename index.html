@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Marketplace | Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="auth-style.css">
+</head>
+<body>
+    <div class="auth-background">
+        <!-- Animated grid spans (160 total for full coverage) -->
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="auth-container" id="container">
+        <div class="form-container sign-up">
+            <form id="registrationForm">
+                <h1>Create Account</h1>
+                
+                <div class="form-group">
+                    <label>Profile Photo (Optional)</label>
+                    <input type="file" id="profilePhotoInput" name="profilePhoto" accept="image/*">
+                    <div class="photo-preview-container">
+                        <img id="profilePhotoPreview" class="photo-preview" style="display: none;">
+                        <div id="defaultPhotoPreview" class="photo-preview"><i class="fas fa-user-circle"></i></div>
+                    </div>
+                </div>
+                
+                <div class="user-type-selector">
+                    <label>
+                        <input type="radio" name="userType" value="customer" checked>
+                        <span>I'm a Customer</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="userType" value="artisan">
+                        <span>I'm an Artisan</span>
+                    </label>
+                </div>
+                
+                <div id="artisanFields">
+                    <div class="form-group">
+                        <label>Skills (select up to 3)</label>
+                        <select name="skills" multiple class="skills-select">
+                            <option value="carpentry">Carpentry</option>
+                            <option value="plumbing">Plumbing</option>
+                            <option value="masonry">Masonry</option>
+                            <option value="electrical">Electrical</option>
+                            <option value="painting">Painting</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="businessName" placeholder="Business Name (if artisan)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="fullName" placeholder="Full Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Region</label>
+                    <select name="region" required>
+                        <option value="">Select your region</option>
+                        <option value="Greater Accra">Greater Accra</option>
+                        <option value="Ashanti">Ashanti</option>
+                        <option value="Western">Western</option>
+                        <option value="Central">Central</option>
+                        <option value="Eastern">Eastern</option>
+                        <option value="Volta">Volta</option>
+                        <option value="Northern">Northern</option>
+                        <option value="Upper East">Upper East</option>
+                        <option value="Upper West">Upper West</option>
+                        <option value="Bono">Bono</option>
+                        <option value="Ahafo">Ahafo</option>
+                        <option value="Bono East">Bono East</option>
+                        <option value="Oti">Oti</option>
+                        <option value="Western North">Western North</option>
+                        <option value="Savannah">Savannah</option>
+                        <option value="North East">North East</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Password (min 8 chars)" required minlength="8">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                </div>
+                
+                <button type="submit" class="auth-btn">Sign Up</button>
+                <p class="auth-footer">By signing up, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></p>
+            </form>
+        </div>
+        
+        <div class="form-container sign-in">
+            <form id="loginForm">
+                <h1>Sign In</h1>
+                <div class="social-auth">
+                    <button type="button" class="social-btn google">
+                        <i class="fab fa-google"></i> Continue with Google
+                    </button>
+                    <button type="button" class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i> Continue with Facebook
+                    </button>
+                </div>
+                <div class="divider">or</div>
+                
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Password" required>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="auth-btn">Sign In</button>
+                <p class="auth-footer">Don't have an account? <a href="#" id="showSignUp">Sign up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

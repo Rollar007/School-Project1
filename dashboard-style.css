@@ -2142,3 +2142,94 @@ input[type="time"] {
     color: #721c24;
     cursor: not-allowed;
 }
+/* Review Form Styles */
+.rating-stars-input {
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.rating-stars-input i {
+    font-size: 1.8rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.rating-stars-input i.active {
+    color: #ffc107;
+}
+
+/* Review Item Styles */
+.review-item {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.review-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.review-rating {
+    color: #ffc107;
+}
+
+.review-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.review-content {
+    color: #333;
+    line-height: 1.6;
+}
+
+.view-all-reviews-btn {
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.view-all-reviews-btn:hover {
+    background-color: #1d7a80;
+}
+
+.review-appt-btn {
+    background-color: #2da0a8;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.review-appt-btn:hover {
+    background-color: #1d7a80;
+}
+/* Add to your CSS */
+.fa-star.active {
+    color: gold;
+}
+
+.fa-star.half-active {
+    background: linear-gradient(90deg, gold 50%, #ccc 50%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}

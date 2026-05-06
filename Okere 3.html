@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Okere Traditional Council | Sacred Stool of the Seven Towns</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Crimson+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9922A;
+    --gold-light: #E8B84B;
+    --gold-pale: #F5D78A;
+    --deep: #0E0A04;
+    --dark: #1A1208;
+    --earth: #2C1F0A;
+    --terracotta: #8B3A1A;
+    --cream: #F2E8D0;
+    --cream-dim: #D4C5A0;
+    --kente-red: #B22020;
+    --kente-green: #1A5C2A;
+    --kente-blue: #1A2E5C;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'Crimson Pro', serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+  /* CUSTOM CURSOR */
+  .cursor { position: fixed; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.08s, width 0.2s, height 0.2s; mix-blend-mode: difference; }
+  .cursor-ring { position: fixed; width: 34px; height: 34px; border: 1.5px solid var(--gold-light); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: transform 0.12s ease-out, width 0.2s, height 0.2s; opacity: 0.6; }
+  #hero-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  /* LOADER */
+  #loader {
+    position: fixed; inset: 0; background: radial-gradient(circle at center, #1A1208, #0E0A04); z-index: 10000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1.2s ease, visibility 1.2s;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .loader-sword {
+    width: 120px; height: 120px; border: 2px solid rgba(201,146,42,0.3); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 30px; position: relative;
+    animation: pulseGlow 2s infinite;
+  }
+  .loader-sword:before, .loader-sword:after {
+    content: ''; position: absolute; width: 2px; height: 70px; background: var(--gold); top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg); box-shadow: 0 0 8px var(--gold);
+  }
+  .loader-sword:after { transform: translate(-50%, -50%) rotate(-45deg); }
+  @keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(201,146,42,0.2); } 100% { box-shadow: 0 0 0 20px rgba(201,146,42,0); } }
+  .loader-text { font-family: 'Cinzel Decorative', serif; font-size: 0.9rem; letter-spacing: 0.4em; color: var(--gold); margin-top: 20px; text-transform: uppercase; }
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 60px;
+    display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, rgba(14,10,4,0.96) 0%, transparent 100%);
+    transition: background 0.3s, padding 0.3s; backdrop-filter: blur(4px);
+  }
+  nav.scrolled { background: rgba(14,10,4,0.98); padding: 12px 60px; border-bottom: 1px solid rgba(201,146,42,0.25); backdrop-filter: blur(12px); }
+  .nav-logo { font-family: 'Cinzel Decorative', serif; font-size: 1rem; font-weight: 700; color: var(--gold-light); letter-spacing: 0.08em; }
+  .nav-logo span { display: block; font-size: 0.55rem; letter-spacing: 0.35em; color: var(--cream-dim); }
+  .nav-links { display: flex; gap: 48px; list-style: none; }
+  .nav-links a { color: var(--cream-dim); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { width: 100%; }
+  .kente-strip { height: 5px; background: repeating-linear-gradient(90deg, var(--kente-red) 0px, var(--kente-red) 14px, var(--gold) 14px, var(--gold) 28px, var(--kente-green) 28px, var(--kente-green) 42px, var(--gold) 42px, var(--gold) 56px, var(--kente-blue) 56px, var(--kente-blue) 70px); width: 100%; }
+  section { position: relative; z-index: 1; }
+  #home { height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative; }
+  .hero-content { max-width: 860px; padding: 0 40px; position: relative; z-index: 2; }
+  .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--gold); text-transform: uppercase; margin-bottom: 28px; opacity: 0; animation: fadeUp 1s ease forwards 0.5s; }
+  .hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; line-height: 1.05; text-shadow: 0 0 80px rgba(201,146,42,0.3); opacity: 0; animation: fadeUp 1.2s ease forwards 0.8s; }
+  .hero-title .gold { color: var(--gold-light); }
+  .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--cream-dim); margin: 24px 0 50px; opacity: 0; animation: fadeUp 1s ease forwards 1.2s; }
+  .btn-primary { padding: 14px 40px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--deep); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; border: none; cursor: none; transition: transform 0.3s, box-shadow 0.3s; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(201,146,42,0.5); }
+  .btn-outline { padding: 14px 40px; background: transparent; color: var(--gold-light); border: 1px solid rgba(201,146,42,0.5); letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s; cursor: none; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); }
+  .btn-outline:hover { background: rgba(201,146,42,0.1); border-color: var(--gold-light); transform: translateY(-3px); }
+  .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; gap: 8px; opacity: 0; animation: fadeUp 1s ease forwards 2s; }
+  .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease infinite; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .section-inner { max-width: 1200px; margin: 0 auto; padding: 100px 60px; }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+  .section-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 24px; }
+  .section-title .accent { color: var(--gold-light); }
+  #history { background: linear-gradient(180deg, var(--deep) 0%, var(--dark) 100%); }
+  .history-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .history-text p { font-size: 1.1rem; line-height: 1.8; color: var(--cream-dim); margin-bottom: 20px; font-family: 'Cormorant Garamond', serif; }
+  .adinkra-container { height: 480px; position: relative; }
+  #adinkra-canvas { width: 100%; height: 100%; }
+  /* SEVEN TOWNS */
+  #towns { background: linear-gradient(180deg, var(--dark) 0%, var(--earth) 100%); }
+  .towns-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+  .town-card {
+    background: linear-gradient(145deg, rgba(44,31,10,0.85), rgba(14,10,4,0.95));
+    border: 1px solid rgba(201,146,42,0.2); transition: transform 0.4s ease, box-shadow 0.4s; cursor: none;
+    opacity: 0; transform: translateY(30px);
+  }
+  .town-card.visible { opacity: 1; transform: translateY(0); }
+  .town-card:hover { transform: translateY(-8px); box-shadow: 0 20px 35px rgba(0,0,0,0.5); border-color: var(--gold); }
+  .town-card-header { padding: 20px 20px 8px; border-bottom: 1px solid rgba(201,146,42,0.2); }
+  .town-name { font-family: 'Cinzel Decorative', serif; font-size: 1.3rem; color: var(--gold-light); }
+  .town-chief { font-size: 0.8rem; letter-spacing: 0.1em; color: var(--cream-dim); margin: 8px 0; }
+  .town-desc { padding: 18px 20px; font-family: 'Cormorant Garamond', serif; color: var(--cream-dim); line-height: 1.6; }
+  /* EVENTS + CALENDAR */
+  #events-calendar { background: linear-gradient(180deg, var(--earth) 0%, var(--dark) 100%); }
+  .events-calendar-wrapper { display: flex; flex-direction: column; gap: 60px; }
+  .featured-event-card { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; background: rgba(44,31,10,0.6); border: 1px solid rgba(201,146,42,0.25); padding: 32px; margin-bottom: 20px; }
+  .event-date-large { text-align: center; background: linear-gradient(135deg, var(--gold), var(--gold-light)); padding: 24px; color: var(--deep); }
+  .event-date-large .day { font-family: 'Cinzel Decorative', serif; font-size: 3rem; font-weight: 900; }
+  .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-top: 20px; }
+  .calendar-item { background: rgba(44,31,10,0.4); border-left: 3px solid var(--gold); padding: 18px 20px; transition: all 0.3s; }
+  .calendar-item:hover { background: rgba(44,31,10,0.7); transform: translateX(5px); }
+  .calendar-month { font-family: 'Cinzel Decorative', serif; font-size: 0.8rem; color: var(--gold); letter-spacing: 0.2em; }
+  .calendar-event-title { font-size: 1.1rem; font-weight: 600; margin: 8px 0; }
+  /* KINGS */
+  #kings { background: linear-gradient(180deg, var(--dark) 0%, var(--deep) 100%); }
+  .kings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+  .king-card { background: linear-gradient(145deg, rgba(44,31,10,0.85), rgba(14,10,4,0.95)); border: 1px solid rgba(201,146,42,0.2); transition: all 0.4s; cursor: none; opacity: 0; transform: translateY(30px); }
+  .king-card.visible { opacity: 1; transform: translateY(0); }
+  .king-card:hover { transform: translateY(-8px); border-color: var(--gold); }
+  .king-card-banner { height: 180px; background: linear-gradient(135deg, var(--earth), var(--dark)); position: relative; overflow: hidden; }
+  .king-canvas { width: 100%; height: 100%; display: block; }
+  .king-era { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); padding: 4px 12px; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); }
+  .king-card-body { padding: 22px; }
+  .king-name { font-family: 'Cinzel Decorative', serif; font-size: 1.2rem; color: var(--cream); }
+  .king-reign { font-style: italic; color: var(--gold); margin: 6px 0; }
+  .council-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+  .council-card { background: rgba(44,31,10,0.7); border: 1px solid rgba(201,146,42,0.15); padding: 28px 20px; text-align: center; transition: all 0.3s; }
+  .council-card:hover { transform: translateY(-5px); border-color: var(--gold); }
+  .council-avatar-canvas { width: 100px; height: 100px; margin: 0 auto 20px; display: block; border-radius: 50%; background: var(--dark); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; }
+  .form-group input, .form-group textarea, .form-group select { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(201,146,42,0.3); padding: 12px; color: var(--cream); }
+  footer { background: var(--deep); padding: 30px 60px; display: flex; justify-content: space-between; border-top: 1px solid rgba(201,146,42,0.1); flex-wrap: wrap; }
+  @media (max-width: 800px) { .history-layout, .contact-layout, .featured-event-card { grid-template-columns: 1fr; } nav { padding: 16px 24px; } .section-inner { padding: 70px 24px; } }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursor-ring"></div>
+<div id="loader"><div class="loader-sword"></div><div class="loader-text">OKERE TRADITIONAL COUNCIL</div><div style="margin-top: 8px; font-size:0.7rem; letter-spacing: 0.2em;">⚔️ AKOFENA · SANKOFA ⚔️</div></div>
+<canvas id="hero-canvas"></canvas>
+<nav id="navbar"><a href="#home" class="nav-logo">Okere <span>Traditional Council</span></a><ul class="nav-links"><li><a href="#home">Home</a></li><li><a href="#history">History</a></li><li><a href="#towns">Seven Towns</a></li><li><a href="#events-calendar">Events</a></li><li><a href="#kings">Kings</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+
+<section id="home"><div class="hero-content"><p class="hero-eyebrow">Est. 14th Century · Seven Towns · One Stool</p><h1 class="hero-title">Okere <span class="gold">Traditional</span><br>Council</h1><p class="hero-subtitle">"Where the crossed swords of Akofena guard the unity of seven clans"</p><div class="hero-cta-group"><a href="#history" class="btn-primary">Explore Heritage</a><a href="#towns" class="btn-outline">The Seven Towns</a></div></div><div class="scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div></section>
+<div class="kente-strip"></div>
+
+<section id="history"><div class="section-inner"><div class="history-layout"><div class="history-text"><p class="section-label reveal">Origins</p><h2 class="section-title reveal">Centuries of <span class="accent">Wisdom</span></h2><p class="reveal">The Okere Traditional Council stands as one of the most enduring governing bodies in West Africa, founded in the 14th century. Comprising <strong>seven major towns</strong>, each with its own divisional chief, the Council unites the clans under the sacred Golden Stool of Okere.</p><p class="reveal">Rooted in the philosophy of unity, justice, and ancestral reverence, the Council has preserved customary law, settled disputes, and guided the Okere people through epochs of triumph and transformation.</p><p class="reveal">Today, the Okere Traditional Council bridges ancient wisdom with modern governance, ensuring the voices of the ancestors continue to shape the future.</p></div><div class="adinkra-container reveal"><canvas id="adinkra-canvas"></canvas></div></div></div></section>
+<div class="kente-strip"></div>
+
+<!-- SEVEN TOWNS SECTION -->
+<section id="towns"><div class="section-inner"><p class="section-label reveal">The Constituent Clans</p><h2 class="section-title reveal">Seven <span class="accent">Towns</span> · One Stool</h2><p class="reveal" style="margin-bottom: 30px; font-style: italic;">Each town contributes a divisional chief to the Council, forming the sacred circle of governance.</p><div class="towns-grid" id="townsGrid"></div></div></section>
+<div class="kente-strip"></div>
+
+<!-- EVENTS & TRADITIONAL CALENDAR SECTION -->
+<section id="events-calendar"><div class="section-inner"><div class="events-calendar-wrapper"><div><p class="section-label reveal">Sacred Occasions</p><h2 class="section-title reveal">Festivals & <span class="accent">Traditional Calendar</span></h2></div><div class="featured-event-card reveal"><div class="event-date-large"><div class="day">14</div><div class="month">JUNE 2026</div></div><div><div style="color: var(--gold); letter-spacing: 0.2em;">GRAND HOMOWO</div><h3 style="font-size: 1.5rem; margin: 8px 0;">Harvest of Remembrance</h3><p>Annual Homowo Festival: libation pouring, ancestral processions, kpokpoi sharing, and durbar of chiefs in full regalia. The entire Okere Traditional Area gathers at the Royal Palace grounds.</p></div></div><div><h3 class="section-title" style="font-size: 1.4rem;">📅 Annual Sacred Calendar</h3><div class="calendar-grid" id="calendarGrid"></div></div></div></div></section>
+<div class="kente-strip"></div>
+
+<!-- KINGS SECTION -->
+<section id="kings"><div class="section-inner"><p class="section-label reveal">Royal Lineage</p><h2 class="section-title reveal">Kings of <span class="accent">Okere</span></h2><div class="kings-grid" id="kingsGrid"></div></div></section>
+<div class="kente-strip"></div>
+
+<section id="leadership"><div class="section-inner"><p class="section-label reveal">The Stool Bearers</p><h2 class="section-title reveal">Council <span class="accent">Leadership</span></h2><div class="council-grid" id="councilGrid"></div></div></section>
+<div class="kente-strip"></div>
+
+<section id="contact"><div class="section-inner"><div class="contact-layout"><div class="contact-info"><p class="section-label reveal">Palace Gate</p><h2 class="section-title reveal">Reach the <span class="accent">Council</span></h2><div class="contact-item" style="margin-bottom:20px">📍 Royal Palace of Okere, Eastern Region, West Africa</div><div class="contact-item" style="margin-bottom:20px">📞 +233 (0) 302 777 111</div><div class="contact-item">✉️ sacredstool@okerecouncil.org</div></div><div class="contact-form reveal"><div class="form-group"><label>Your Name</label><input type="text" id="contactName"></div><div class="form-group"><label>Purpose</label><select id="contactPurpose"><option>Customary Matter</option><option>Land Inquiry</option><option>Festival Participation</option><option>General</option></select></div><div class="form-group"><label>Message</label><textarea id="contactMsg" rows="3"></textarea></div><button class="btn-primary" id="contactSubmit" style="width:100%">Send to the Council</button></div></div></div></section>
+
+<footer><div class="footer-logo">Okere Traditional Council</div><div class="footer-copy">© 2026 · Honouring the Ancestors · Shaping the Future</div><div class="footer-copy">⚔️ AKOFENA · GYE NYAME · SANKOFA ⚔️</div></footer>
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
+function ringAnim(){ rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(ringAnim); } ringAnim();
+document.querySelectorAll('a,button,.town-card,.king-card,.council-card,.event-card').forEach(el=>{ el.addEventListener('mouseenter',()=>{ cursor.style.width='20px'; cursor.style.height='20px'; ring.style.width='56px'; ring.style.height='56px'; }); el.addEventListener('mouseleave',()=>{ cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='34px'; ring.style.height='34px'; }); });
+window.addEventListener('load',()=>{ setTimeout(()=>{ document.getElementById('loader').classList.add('hidden'); }, 1600); });
+window.addEventListener('scroll',()=>{ document.getElementById('navbar').classList.toggle('scrolled', window.scrollY>60); });
+
+// DATA: SEVEN TOWNS
+const towns = [
+  { name:"Okere Amanfrom", chief:"Nana Kwasi Poku I", title:"Amanfromhene", desc:"The gateway town and seat of the divisional chief who oversees the western corridors. Known for its sacred groves and weekly market." },
+  { name:"Okere Addo Nkwanta", chief:"Nana Yaw Adinkra", title:"Addohene", desc:"Agricultural heartland, custodian of yam festival rites and the ancient royal farms." },
+  { name:"Okere Sakyikrom", chief:"Nana Osei Bonsu", title:"Sakyihene", desc:"Town of the royal linguists, preserving the oral traditions and praise poetry of the stool." },
+  { name:"Okere Besease", chief:"Nana Ama Serwaa II", title:"Beseasehemaa", desc:"The women's stronghold, where the Queen Mother's palace stands. Center of trade and diplomacy." },
+  { name:"Okere Asikasu", chief:"Nana Kofi Ababio", title:"Asikasuhene", desc:"Famous for its goldsmiths and the shrine of the earth deity. Guardian of the treasury." },
+  { name:"Okere Awukugua", chief:"Nana Kwadwo Ampem", title:"Awukuguahene", desc:"Hilltop town known as the ‘eye of Okere’. The spiritual observatory and festival planning council resides here." },
+  { name:"Okere Akropong", chief:"Nana Kofi Asante III", title:"Okere Mantse (Paramount)", desc:"The royal capital where the paramount chief’s palace stands. Center of governance and the Golden Stool." }
+];
+
+// KINGS DATA
+const kings = [
+  { name:"Nana Brempon I", reign:"c. 1380 – 1412", title:"Founder King", shortDesc:"Warrior-sage who united the seven clans beneath the odum tree." },
+  { name:"Nana Kwadwo Akenten", reign:"1640 – 1689", title:"The Unifier", shortDesc:"Expanded Okere territories and formalized the Council's judicial authority." },
+  { name:"Nana Adu Bofour", reign:"1720 – 1765", title:"The Iron Stool", shortDesc:"Military brilliance, defended the seven towns against invasions." },
+  { name:"Nana Yaa Asantewaa I", reign:"1844 – 1889", title:"Queen Mother Regnant", shortDesc:"Preserved ancestral rites and protected land rights." },
+  { name:"Nana Kofi Asante III", reign:"2002 – Present", title:"Living King", shortDesc:"Modern sovereign bridging tradition and development." }
+];
+
+// CALENDAR EVENTS
+const calendarEvents = [
+  { month:"January", event:"Akwasidae Festival – First Friday", desc:"Grand durbar at the Palace, honoring ancestral spirits with drumming and offerings." },
+  { month:"March", event:"Fetu Afahye Preparations", desc:"Cleansing rites and council meetings for the upcoming harvest festival." },
+  { month:"June", event:"Homowo Festival – Harvest of Remembrance", desc:"The great feast of yam and kpokpoi, processions of chiefs in full regalia." },
+  { month:"September", event:"Enstoolment Anniversary Durbar", desc:"Celebration of the paramount chief's enstoolment with dancing and feasting." },
+  { month:"November", event:"Okere Yam Festival", desc:"Thanksgiving to the earth deity for a bountiful harvest. Traditional wrestling." },
+  { month:"December", event:"Council Chiefs' Assembly", desc:"Final quarter meeting to review the year's customary rulings and plans." }
+];
+
+function buildTowns(){
+  const grid = document.getElementById('townsGrid');
+  grid.innerHTML = towns.map(t => `<div class="town-card reveal"><div class="town-card-header"><div class="town-name">${t.name}</div><div class="town-chief">${t.chief} · ${t.title}</div></div><div class="town-desc">${t.desc}</div></div>`).join('');
+  document.querySelectorAll('.town-card').forEach(card => revealObserver.observe(card));
+}
+function buildKings(){
+  const grid = document.getElementById('kingsGrid');
+  grid.innerHTML = kings.map((k,i) => `<div class="king-card" data-id="${i}"><div class="king-card-banner"><canvas class="king-canvas" data-id="${i}" width="300" height="180" style="width:100%;height:180px;"></canvas><div class="king-era">${k.reign}</div></div><div class="king-card-body"><div class="king-name">${k.name}</div><div class="king-reign">${k.reign}</div><div class="king-desc">${k.shortDesc}</div></div></div>`).join('');
+  kings.forEach((_,idx)=>{ const canv = document.querySelector(`.king-canvas[data-id="${idx}"]`); if(canv) initKingCanvas(canv, idx); });
+  document.querySelectorAll('.king-card').forEach(c=>c.addEventListener('click',()=>alert(`🏆 ${c.querySelector('.king-name')?.innerText} — Great ruler of Okere. Full chronicle in royal archives.`)));
+}
+function initKingCanvas(canvasElem, idx){
+  const parent = canvasElem.parentElement;
+  const w = parent.clientWidth, h = 180;
+  canvasElem.width = w; canvasElem.height = h;
+  const renderer = new THREE.WebGLRenderer({ canvas: canvasElem, alpha: true });
+  renderer.setSize(w, h);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, w/h, 0.1, 100);
+  camera.position.z = 3.2;
+  const group = new THREE.Group();
+  const goldMat = new THREE.MeshPhongMaterial({ color: 0xC9922A });
+  const torus = new THREE.Mesh(new THREE.TorusGeometry(0.85, 0.07, 24, 80), goldMat);
+  group.add(torus);
+  const core = new THREE.Mesh(new THREE.SphereGeometry(0.35, 24,24), new THREE.MeshPhongMaterial({ color: 0xE8B84B, emissive: 0x331C00 }));
+  group.add(core);
+  for(let i=0;i<4;i++){ const spike = new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.08,0.5,5), goldMat); spike.position.set(Math.sin(i*1.57)*0.9, Math.cos(i*1.57)*0.9,0); group.add(spike); }
+  scene.add(group);
+  scene.add(new THREE.AmbientLight(0x553322, 0.7));
+  const light = new THREE.DirectionalLight(0xffcc88,1); light.position.set(2,3,4); scene.add(light);
+  (function anim(){ requestAnimationFrame(anim); group.rotation.y += 0.008; group.rotation.x = Math.sin(Date.now()*0.0015)*0.1; renderer.render(scene, camera); })();
+}
+function buildCalendar(){ 
+  const grid = document.getElementById('calendarGrid');
+  grid.innerHTML = calendarEvents.map(ce => `<div class="calendar-item"><div class="calendar-month">${ce.month}</div><div class="calendar-event-title">${ce.event}</div><div class="calendar-desc" style="font-size:0.85rem; color:var(--cream-dim); margin-top:6px;">${ce.desc}</div></div>`).join('');
+}
+const council = [
+  { name:"Nana Kofi Asante III", role:"Paramount Chief · Okere Mantse", desc:"Living sovereign, direct descendant of Brempon I." },
+  { name:"Nana Ama Serwaa", role:"Queen Mother · Ohemmaa", desc:"Spiritual matriarch, custodian of royal lineages." },
+  { name:"Opanin Kwame Ofori", role:"Council Elder · Safohene", desc:"Chief of defence and traditional security." },
+  { name:"Okyeame Yaw Boakye", role:"Royal Linguist", desc:"Master of oratory and ceremonial protocol." }
+];
+function buildCouncil(){
+  const grid = document.getElementById('councilGrid');
+  grid.innerHTML = council.map(c => `<div class="council-card"><canvas class="council-avatar-canvas" width="100" height="100" style="width:100px;height:100px;margin:0 auto;border-radius:50%;"></canvas><h3>${c.name}</h3><div class="card-role">${c.role}</div><p style="font-family:'Cormorant Garamond';">${c.desc}</p></div>`).join('');
+  document.querySelectorAll('.council-avatar-canvas').forEach((cv, idx) => {
+    const render = new THREE.WebGLRenderer({ canvas: cv, alpha: true });
+    render.setSize(100,100);
+    const sceneC = new THREE.Scene(); const camC = new THREE.PerspectiveCamera(45,1,0.1,10); camC.position.z = 2.2;
+    const groupC = new THREE.Group(); const colorsArr = [0xC9922A,0xE8B84B,0xB22020,0x1A5C2A];
+    const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.7,24,24), new THREE.MeshPhongMaterial({ color: colorsArr[idx%colorsArr.length] }));
+    groupC.add(sphere);
+    const ringC = new THREE.Mesh(new THREE.TorusGeometry(0.85,0.05,16,60), new THREE.MeshPhongMaterial({ color: 0xF5D78A }));
+    groupC.add(ringC);
+    sceneC.add(groupC);
+    sceneC.add(new THREE.AmbientLight(0xaa8844));
+    const dl = new THREE.DirectionalLight(0xffdd99,1); dl.position.set(2,2,3); sceneC.add(dl);
+    (function animateC(){ requestAnimationFrame(animateC); groupC.rotation.y += 0.01; ringC.rotation.z += 0.005; render.render(sceneC, camC); })();
+  });
+}
+// Hero 3D with CROSSED SWORDS (AKOFENA) & Adinkra
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  const scene = new THREE.Scene(); const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 50);
+  camera.position.z = 6.5; camera.position.y = 1;
+  // Crossed swords (Akofena)
+  const swordGroup = new THREE.Group();
+  const bladeMat = new THREE.MeshPhongMaterial({ color: 0xDDAA55, emissive: 0x442200, shininess: 90 });
+  const hiltMat = new THREE.MeshPhongMaterial({ color: 0xC9922A });
+  const createSword = (rotZ) => {
+    const group = new THREE.Group();
+    const blade = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.6, 0.08), bladeMat);
+    blade.position.y = 0.8;
+    const crossguard = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.08, 0.1), hiltMat);
+    crossguard.position.y = 0;
+    const handle = new THREE.Mesh(new THREE.CylinderGeometry(0.1,0.12,0.4,6), hiltMat);
+    handle.position.y = -0.3;
+    group.add(blade, crossguard, handle);
+    group.rotation.z = rotZ;
+    return group;
+  };
+  const swordLeft = createSword(-0.35);
+  const swordRight = createSword(0.35);
+  swordLeft.position.set(-1.1, -0.2, 0.5);
+  swordRight.position.set(1.1, -0.2, 0.5);
+  swordGroup.add(swordLeft, swordRight);
+  scene.add(swordGroup);
+  // Adinkra symbols: central Gye Nyame + Sankofa stars
+  const centerSymbol = new THREE.Mesh(new THREE.SphereGeometry(0.45, 32,32), new THREE.MeshPhongMaterial({ color: 0xE8B84B, emissive: 0x552200 }));
+  scene.add(centerSymbol);
+  const ringAdinkra = new THREE.Mesh(new THREE.TorusGeometry(1.35, 0.06, 32, 100), new THREE.MeshPhongMaterial({ color: 0xC9922A }));
+  scene.add(ringAdinkra);
+  // floating gold particles
+  const particles = [];
+  for(let i=0;i<300;i++){ const pGeo = new THREE.SphereGeometry(0.045,6,6); const pMat = new THREE.MeshPhongMaterial({ color: 0xD4AF37 }); const part = new THREE.Mesh(pGeo,pMat); part.position.set((Math.random()-0.5)*12, (Math.random()-0.5)*8, (Math.random()-0.5)*10 - 5); scene.add(part); particles.push(part); }
+  scene.add(new THREE.AmbientLight(0x332211));
+  const light = new THREE.DirectionalLight(0xffcc88,1.2); light.position.set(4,5,6); scene.add(light);
+  const backLight = new THREE.PointLight(0xC9922A,0.5); backLight.position.set(0,1,-3); scene.add(backLight);
+  let mouseX=0,mouseY=0;
+  document.addEventListener('mousemove', e=>{ mouseX = (e.clientX/innerWidth-0.5)*2; mouseY = (e.clientY/innerHeight-0.5)*1.5; });
+  function animate(){ requestAnimationFrame(animate); swordGroup.rotation.z = Math.sin(Date.now()*0.001)*0.05; swordGroup.rotation.x = Math.sin(Date.now()*0.0008)*0.03; ringAdinkra.rotation.y += 0.005; ringAdinkra.rotation.x += 0.003; particles.forEach(p=>{ p.rotation.x+=0.02; }); camera.position.x += (mouseX*0.6 - camera.position.x)*0.05; camera.position.y += (-mouseY*0.4 - camera.position.y)*0.05; camera.lookAt(0,0,0); renderer.render(scene,camera); } animate();
+  window.addEventListener('resize',()=>{ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); });
+})();
+// Adinkra canvas additional
+(function(){
+  const canvas = document.getElementById('adinkra-canvas');
+  if(!canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+  function resizeAd(){ const w = canvas.parentElement.clientWidth, h = 480; renderer.setSize(w,h); camera.aspect = w/h; camera.updateProjectionMatrix(); }
+  const scene = new THREE.Scene(); const camera = new THREE.PerspectiveCamera(45,1,0.1,100); camera.position.z = 5.8;
+  const groupA = new THREE.Group();
+  const torusMain = new THREE.Mesh(new THREE.TorusGeometry(2, 0.07, 32, 120), new THREE.MeshPhongMaterial({ color: 0xE8B84B }));
+  groupA.add(torusMain);
+  const gyeNyame = new THREE.Mesh(new THREE.IcosahedronGeometry(0.95,0), new THREE.MeshPhongMaterial({ color: 0xC9922A, emissive: 0x442200 }));
+  groupA.add(gyeNyame);
+  for(let i=0;i<12;i++){ const ang = i*Math.PI*2/12; const tri = new THREE.Mesh(new THREE.ConeGeometry(0.13,0.4,3), new THREE.MeshPhongMaterial({ color: i%2===0?0xB22020:0x1A5C2A })); tri.position.set(Math.cos(ang)*2.45, Math.sin(ang)*2.45,0); groupA.add(tri); }
+  scene.add(groupA);
+  scene.add(new THREE.AmbientLight(0x885533));
+  const l1 = new THREE.DirectionalLight(0xffdd99,1); l1.position.set(3,4,5); scene.add(l1);
+  function animateA(){ requestAnimationFrame(animateA); groupA.rotation.y += 0.006; groupA.rotation.z = Math.sin(Date.now()*0.0005)*0.05; renderer.render(scene,camera); }
+  animateA(); resizeAd(); window.addEventListener('resize', resizeAd);
+})();
+
+const revealObserver = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold:0.1 });
+document.querySelectorAll('.reveal, .town-card, .king-card, .calendar-item').forEach(el=>revealObserver.observe(el));
+buildTowns(); buildKings(); buildCalendar(); buildCouncil();
+document.getElementById('contactSubmit')?.addEventListener('click',()=>{ alert("Your message has been delivered to the Palace Secretariat. The ancestors smile upon your respect."); });
+</script>
+</body>
+</html>
